@@ -7,10 +7,12 @@ class Bubble {
       @required this.iconColor,
       @required this.bubbleColor,
       @required this.icon,
-      @required this.onPress});
+      @required this.onPress,
+      this.iconSize});
 
   final IconData icon;
   final Color iconColor;
+  final double iconSize;
   final Color bubbleColor;
   final Function onPress;
   final String title;
@@ -25,7 +27,7 @@ class BubbleMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      shape: StadiumBorder(),
+      shape: CircleBorder(),
       padding: EdgeInsets.only(top: 11, bottom: 13, left: 32, right: 32),
       color: item.bubbleColor,
       splashColor: Colors.grey.withOpacity(0.1),
@@ -41,15 +43,16 @@ class BubbleMenu extends StatelessWidget {
               ? Icon(
                   item.icon,
                   color: item.iconColor,
+                  size: item.iconSize
                 )
               : Container(),
-          SizedBox(
-            width: 10.0,
-          ),
-          Text(
-            item.title,
-            style: item.titleStyle,
-          ),
+//          SizedBox(
+//            width: 10.0,
+//          ),
+//          Text(
+//            item.title,
+//            style: item.titleStyle,
+//          ),
         ],
       ),
     );
@@ -71,6 +74,7 @@ class FloatingActionBubble extends AnimatedWidget {
     @required Animation animation,
     this.herotag,
     this.iconData,
+    this.iconSize,
     this.animatedIconData,
   })  : assert((iconData == null && animatedIconData != null) ||
             (iconData != null && animatedIconData == null)),
@@ -82,6 +86,7 @@ class FloatingActionBubble extends AnimatedWidget {
   final Object herotag;
   final IconData iconData;
   final Color iconColor;
+  final double iconSize;
   final Color backGroundColor;
 
   get _animation => listenable;
@@ -146,6 +151,7 @@ class FloatingActionBubble extends AnimatedWidget {
               : Icon(
                   iconData,
                   color: iconColor,
+                  size: iconSize
                 ),
           onPressed: onPress,
         ),
