@@ -90,7 +90,7 @@ class FloatingActionBubble extends AnimatedWidget {
   final Color iconColor;
   final double iconSize;
   final Color backGroundColor;
-  final Key key;
+  final GlobalKey key;
 
   get _animation => listenable;
 
