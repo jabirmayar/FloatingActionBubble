@@ -8,7 +8,8 @@ class Bubble {
       @required this.bubbleColor,
       @required this.icon,
       @required this.onPress,
-      this.iconSize});
+      this.iconSize,
+      this.key});
 
   final IconData icon;
   final Color iconColor;
@@ -17,6 +18,7 @@ class Bubble {
   final Function onPress;
   final String title;
   final TextStyle titleStyle;
+  final GlobalKey key;
 }
 
 class BubbleMenu extends StatelessWidget {
@@ -144,7 +146,7 @@ class FloatingActionBubble extends AnimatedWidget {
         FloatingActionButton(
           heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
           backgroundColor: backGroundColor,
-          key: key,
+          key: items.key,
           // iconData is mutually exclusive with animatedIconData
           // only 1 can be null at the time
           child: iconData == null
