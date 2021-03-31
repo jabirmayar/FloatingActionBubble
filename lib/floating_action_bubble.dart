@@ -127,7 +127,7 @@ class FloatingActionBubble extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalKey keybutton = keyButton1;
+    GlobalKey keyButton = keyButton1;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
