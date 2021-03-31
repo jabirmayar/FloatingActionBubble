@@ -8,8 +8,7 @@ class Bubble {
       @required this.bubbleColor,
       @required this.icon,
       @required this.onPress,
-      this.iconSize,
-      this.key});
+      this.iconSize});
 
   final IconData icon;
   final Color iconColor;
@@ -18,7 +17,6 @@ class Bubble {
   final Function onPress;
   final String title;
   final TextStyle titleStyle;
-  final GlobalKey key;
 }
 
 class BubbleMenu extends StatelessWidget {
@@ -79,7 +77,6 @@ class FloatingActionBubble extends AnimatedWidget {
     this.iconData,
     this.iconSize,
     this.animatedIconData,
-    this.key,
   })  : assert((iconData == null && animatedIconData != null) ||
             (iconData != null && animatedIconData == null)),
         super(listenable: animation);
@@ -92,9 +89,10 @@ class FloatingActionBubble extends AnimatedWidget {
   final Color iconColor;
   final double iconSize;
   final Color backGroundColor;
-  final GlobalKey key;
 
   get _animation => listenable;
+  
+  GlobalKey keyButton1 = GlobalKey();
 
   Widget buildItem(BuildContext context, int index) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -146,7 +144,7 @@ class FloatingActionBubble extends AnimatedWidget {
         FloatingActionButton(
           heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
           backgroundColor: backGroundColor,
-          key: items[0]["key"],
+          key: keyButton1,
           // iconData is mutually exclusive with animatedIconData
           // only 1 can be null at the time
           child: iconData == null
