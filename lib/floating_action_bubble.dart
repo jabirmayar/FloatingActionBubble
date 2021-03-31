@@ -20,7 +20,7 @@ class Bubble {
 }
 
 class BubbleMenu extends StatelessWidget {
-  const BubbleMenu(this.item);
+  const BubbleMenu(this.item, {Key key}) : super(key: key);
 
   final Bubble item;
 
@@ -77,6 +77,7 @@ class FloatingActionBubble extends AnimatedWidget {
     this.iconData,
     this.iconSize,
     this.animatedIconData,
+    this.keybutton1;
   })  : assert((iconData == null && animatedIconData != null) ||
             (iconData != null && animatedIconData == null)),
         super(listenable: animation);
@@ -89,6 +90,7 @@ class FloatingActionBubble extends AnimatedWidget {
   final Color iconColor;
   final double iconSize;
   final Color backGroundColor;
+  final GlobalKey keyButton1;
 
   get _animation => listenable;
   
@@ -125,7 +127,7 @@ class FloatingActionBubble extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    final keyButton1 = GlobalKey();
+    GlobalKey keybutton = keyButton1;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -144,7 +146,6 @@ class FloatingActionBubble extends AnimatedWidget {
         FloatingActionButton(
           heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
           backgroundColor: backGroundColor,
-          key: keyButton1,
           // iconData is mutually exclusive with animatedIconData
           // only 1 can be null at the time
           child: iconData == null
@@ -155,7 +156,8 @@ class FloatingActionBubble extends AnimatedWidget {
               : Icon(
                   iconData,
                   color: iconColor,
-                  size: iconSize
+                  size: iconSize,
+                  key: keyButton,
                 ),
           onPressed: onPress,
         ),
