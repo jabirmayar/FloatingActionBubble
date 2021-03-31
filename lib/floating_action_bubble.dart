@@ -37,6 +37,7 @@ class BubbleMenu extends StatelessWidget {
       disabledColor: item.bubbleColor,
       onPressed: item.onPress,
       child: Row(
+        
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           item.icon != null
@@ -76,6 +77,7 @@ class FloatingActionBubble extends AnimatedWidget {
     this.iconData,
     this.iconSize,
     this.animatedIconData,
+    this.key,
   })  : assert((iconData == null && animatedIconData != null) ||
             (iconData != null && animatedIconData == null)),
         super(listenable: animation);
@@ -88,6 +90,7 @@ class FloatingActionBubble extends AnimatedWidget {
   final Color iconColor;
   final double iconSize;
   final Color backGroundColor;
+  final Key key;
 
   get _animation => listenable;
 
@@ -139,6 +142,7 @@ class FloatingActionBubble extends AnimatedWidget {
           ),
         ),
         FloatingActionButton(
+          key: key,
           heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
           backgroundColor: backGroundColor,
           // iconData is mutually exclusive with animatedIconData
