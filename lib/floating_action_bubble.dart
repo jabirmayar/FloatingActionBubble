@@ -144,6 +144,7 @@ class FloatingActionBubble extends AnimatedWidget {
         FloatingActionButton(
           heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
           backgroundColor: backGroundColor,
+          key: key,
           // iconData is mutually exclusive with animatedIconData
           // only 1 can be null at the time
           child: iconData == null
@@ -154,8 +155,7 @@ class FloatingActionBubble extends AnimatedWidget {
               : Icon(
                   iconData,
                   color: iconColor,
-                  size: iconSize,
-                  key: key,
+                  size: iconSize
                 ),
           onPressed: onPress,
         ),
