@@ -92,7 +92,7 @@ class FloatingActionBubble extends AnimatedWidget {
 
   get _animation => listenable;
   
-  GlobalKey keyButton1 = GlobalKey();
+  const keyButton1 = GlobalKey();
 
   Widget buildItem(BuildContext context, int index) {
     final screenWidth = MediaQuery.of(context).size.width;
