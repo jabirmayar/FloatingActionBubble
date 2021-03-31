@@ -20,7 +20,7 @@ class Bubble {
 }
 
 class BubbleMenu extends StatelessWidget {
-  const BubbleMenu(this.item, {Key key}) : super(key: key);
+  const BubbleMenu(this.item);
 
   final Bubble item;
 
