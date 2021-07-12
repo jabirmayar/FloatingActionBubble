@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 class Bubble {
   const Bubble(
       {required this.title,
-      required this.titleStyle,
-      required this.iconColor,
-      required this.bubbleColor,
-      required this.icon,
+      this.titleStyle,
+      this.iconColor,
+      this.bubbleColor,
+      this.icon,
       required this.onPress,
       this.iconSize});
 
-  final IconData icon;
-  final Color iconColor;
-  final double iconSize;
-  final Color bubbleColor;
+  final IconData? icon;
+  final Color? iconColor;
+  final double? iconSize;
+  final Color? bubbleColor;
   final Function onPress;
   final String title;
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 }
 
 class BubbleMenu extends StatelessWidget {
-  const BubbleMenu(this.item, {Key key}) : super(key: key);
+  const BubbleMenu(this.item, {Key? key}) : super(key: key);
 
   final Bubble item;
 
@@ -37,7 +37,6 @@ class BubbleMenu extends StatelessWidget {
       disabledColor: item.bubbleColor,
       onPressed: item.onPress,
       child: Row(
-        
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           item.icon != null
@@ -47,13 +46,6 @@ class BubbleMenu extends StatelessWidget {
                   size: item.iconSize
                 )
               : Container(),
-//          SizedBox(
-//            width: 10.0,
-//          ),
-//          Text(
-//            item.title,
-//            style: item.titleStyle,
-//          ),
         ],
       ),
     );
@@ -70,24 +62,26 @@ class FloatingActionBubble extends AnimatedWidget {
   const FloatingActionBubble({
     required this.items,
     required this.onPress,
-    required this.iconColor,
-    required this.backGroundColor,
+    this.iconColor,
+    this.backGroundColor,
     required Animation animation,
     this.herotag,
     this.iconData,
     this.iconSize,
     this.animatedIconData,
-    this.keyButton1,
-  });
+    required this.keyButton1,
+  }) 
+    (iconData != null && animatedIconData == null)),
+        super(listenable: animation);
 
   final List<Bubble> items;
-  final Function onPress;
-  final AnimatedIconData animatedIconData;
-  final Object herotag;
-  final IconData iconData;
-  final Color iconColor;
-  final double iconSize;
-  final Color backGroundColor;
+  final VoidCallback onPress;
+  final AnimatedIconData? animatedIconData;
+  final Object? herotag;
+  final IconData? iconData;
+  final Color? iconColor;
+  final double? iconSize;
+  final Color? backGroundColor;
   final GlobalKey keyButton1;
 
   get _animation => listenable;
