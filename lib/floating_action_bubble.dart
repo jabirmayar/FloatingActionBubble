@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 class Bubble {
   const Bubble(
       {this.title,
+      required this.onPress,
       this.titleStyle,
       this.iconColor,
       this.bubbleColor,
       this.icon,
-      required this.onPress,
-      this.iconSize});
+      required this.iconSize});
 
   final IconData? icon;
   final Color? iconColor;
-  final double? iconSize;
+  final double iconSize;
   final Color? bubbleColor;
   final Function onPress;
   final String? title;
@@ -20,7 +20,7 @@ class Bubble {
 }
 
 class BubbleMenu extends StatelessWidget {
-  const BubbleMenu(required this.item, {Key? key}) : super(key: key);
+  const BubbleMenu(this.item, {Key? key}) : super(key: key);
 
   final Bubble item;
 
@@ -70,10 +70,12 @@ class FloatingActionBubble extends AnimatedWidget {
     required this.iconSize,
     this.animatedIconData,
     required this.keyButton1,
-  });
+  }); assert((iconData == null && animatedIconData != null) ||
+      (iconData != null && animatedIconData == null)),
+        super(listenable: animation)
 
   final List<Bubble> items;
-  final Function onPress;
+  final VoidCallback onPress;
   final AnimatedIconData? animatedIconData;
   final Object? herotag;
   final IconData? iconData;
@@ -125,9 +127,9 @@ class FloatingActionBubble extends AnimatedWidget {
           ignoring: _animation.value == 0,
           child: ListView.separated(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            separatorBuilder: (_, __) => SizedBox(height: 12.0),
-            padding: EdgeInsets.symmetric(vertical: 12),
+            physics: const NeverScrollableScrollPhysics(),
+            separatorBuilder: (_, __) => const SizedBox(height: 12.0),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             itemCount: items.length,
             itemBuilder: buildItem,
           ),
