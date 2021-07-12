@@ -73,7 +73,7 @@ class FloatingActionBubble extends AnimatedWidget {
   });
 
   final List<Bubble> items;
-  final VoidCallback onPress;
+  final Function onPress;
   final AnimatedIconData? animatedIconData;
   final Object? herotag;
   final IconData? iconData;
