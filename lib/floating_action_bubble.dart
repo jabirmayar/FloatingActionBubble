@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class Bubble {
   const Bubble(
-      {@required this.title,
-      @required this.titleStyle,
-      @required this.iconColor,
-      @required this.bubbleColor,
-      @required this.icon,
-      @required this.onPress,
+      {required this.title,
+      required this.titleStyle,
+      required this.iconColor,
+      required this.bubbleColor,
+      required this.icon,
+      required this.onPress,
       this.iconSize});
 
   final IconData icon;
@@ -68,19 +68,17 @@ class _DefaultHeroTag {
 
 class FloatingActionBubble extends AnimatedWidget {
   const FloatingActionBubble({
-    @required this.items,
-    @required this.onPress,
-    @required this.iconColor,
-    @required this.backGroundColor,
-    @required Animation animation,
+    required this.items,
+    required this.onPress,
+    required this.iconColor,
+    required this.backGroundColor,
+    required Animation animation,
     this.herotag,
     this.iconData,
     this.iconSize,
     this.animatedIconData,
     this.keyButton1,
-  })  : assert((iconData == null && animatedIconData != null) ||
-            (iconData != null && animatedIconData == null)),
-        super(listenable: animation);
+  });
 
   final List<Bubble> items;
   final Function onPress;
@@ -98,10 +96,9 @@ class FloatingActionBubble extends AnimatedWidget {
   Widget buildItem(BuildContext context, int index) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    TextDirection textDirection =
-        Directionality.of(context) ?? TextDirection.ltr;
+     final textDirection = Directionality.of(context);
 
-    double animationDirection = textDirection == TextDirection.ltr ? -1 : 1;
+    final animationDirection = textDirection == TextDirection.ltr ? -1 : 1;
 
     final transform = Matrix4.translationValues(
       animationDirection *
@@ -144,11 +141,11 @@ class FloatingActionBubble extends AnimatedWidget {
           ),
         ),
         FloatingActionButton(
-          heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
+          heroTag: herotag ?? const _DefaultHeroTag(),
           backgroundColor: backGroundColor,
           // iconData is mutually exclusive with animatedIconData
           // only 1 can be null at the time
-          child: iconData == null
+          child: iconData == null && animatedIconData != null
               ? AnimatedIcon(
                   icon: animatedIconData,
                   progress: _animation,
