@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Bubble {
   const Bubble(
-      {required this.title,
+      {this.title,
       this.titleStyle,
       this.iconColor,
       this.bubbleColor,
@@ -15,7 +15,7 @@ class Bubble {
   final double? iconSize;
   final Color? bubbleColor;
   final Function onPress;
-  final String title;
+  final String? title;
   final TextStyle? titleStyle;
 }
 
@@ -67,12 +67,10 @@ class FloatingActionBubble extends AnimatedWidget {
     required Animation animation,
     this.herotag,
     this.iconData,
-    this.iconSize,
+    required this.iconSize,
     this.animatedIconData,
     required this.keyButton1,
-  }) 
-    (iconData != null && animatedIconData == null)),
-        super(listenable: animation);
+  });
 
   final List<Bubble> items;
   final VoidCallback onPress;
@@ -80,7 +78,7 @@ class FloatingActionBubble extends AnimatedWidget {
   final Object? herotag;
   final IconData? iconData;
   final Color? iconColor;
-  final double? iconSize;
+  final double iconSize;
   final Color? backGroundColor;
   final GlobalKey keyButton1;
 
@@ -135,13 +133,13 @@ class FloatingActionBubble extends AnimatedWidget {
           ),
         ),
         FloatingActionButton(
-          heroTag: herotag ?? const _DefaultHeroTag(),
+          heroTag: herotag == null ? const _DefaultHeroTag() : herotag,
           backgroundColor: backGroundColor,
           // iconData is mutually exclusive with animatedIconData
           // only 1 can be null at the time
           child: iconData == null && animatedIconData != null
               ? AnimatedIcon(
-                  icon: animatedIconData,
+                  icon: animatedIconData!,
                   progress: _animation,
                 )
               : Icon(
