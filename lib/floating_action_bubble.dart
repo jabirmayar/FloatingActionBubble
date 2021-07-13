@@ -14,7 +14,7 @@ class Bubble {
   final Color? iconColor;
   final double iconSize;
   final Color? bubbleColor;
-  final Function onPress;
+  final VoidCallback onPress;
   final String? title;
   final TextStyle? titleStyle;
 }
