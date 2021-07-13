@@ -70,9 +70,9 @@ class FloatingActionBubble extends AnimatedWidget {
     required this.iconSize,
     this.animatedIconData,
     required this.keyButton1,
-  }); assert((iconData == null && animatedIconData != null) ||
+  }) : assert((iconData == null && animatedIconData != null) ||
       (iconData != null && animatedIconData == null)),
-        super(listenable: animation)
+        super(listenable: animation);
 
   final List<Bubble> items;
   final VoidCallback onPress;
